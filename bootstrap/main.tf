@@ -4,9 +4,10 @@ provider "google" {
 }
 
 resource "google_storage_bucket" "terraform-bucket" {
-  name        = "${var.tf_bucket_name}"
-  location    = "${var.tf_bucket_location}"
-  versioning  = {
+  name          = "${var.tf_bucket_name}"
+  location      = "${var.tf_bucket_location}"
+  force_destroy = true
+  versioning    = {
     enabled = true
   }
 }

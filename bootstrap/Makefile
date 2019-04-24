@@ -1,10 +1,15 @@
 .EXPORT_ALL_VARIABLES:
 
-GOOGLE_APPLICATION_CREDENTIALS ?= /Users/miguel/.gce/GKE-Cluster-01-0b2f118a38bd.json
+GOOGLE_APPLICATION_CREDENTIALS ?= /Users/miguel/.gce/belitre-gketest-01.json
 
-plan:
-	terraform init
-	terraform plan -var-file=../vars.tfvars
+init:
+	terraform init -upgrade
 
-apply:
-	terraform apply -var-file=../vars.tfvars
+plan: init
+	terraform plan -var-file=vars.tfvars
+
+apply: init
+	terraform apply -var-file=vars.tfvars
+
+destroy: init
+	terraform destroy -var-file=vars.tfvars
