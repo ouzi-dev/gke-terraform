@@ -1,1 +1,3 @@
 bootstrap/.terraform
+.terraform
+terraform.tfstate.backup
