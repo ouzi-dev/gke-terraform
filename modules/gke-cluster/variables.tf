@@ -8,8 +8,8 @@ variable "zones" {
 variable "cluster_name" {
 }
 
-#variable "master_version" {
-#}
+variable "master_version" {
+}
 
 variable "master_cidr_range" {
 }

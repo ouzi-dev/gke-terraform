@@ -9,10 +9,10 @@ provider "google-beta" {
   project     = "${var.project}"
 }
 
-#data "google_container_engine_versions" "supported" {
-#  location       = "${var.region}"
-#  version_prefix = "${var.kubernetes_version}"
-#}
+data "google_container_engine_versions" "supported" {
+  location       = "${var.region}"
+  version_prefix = "${var.kubernetes_version}"
+}
 
 module "network" {
   source               = "./modules/network"
@@ -32,7 +32,7 @@ module "cluster" {
   network_name          = "${module.network.network_name}"
   subnet_name           = "${module.network.subnet_name}"
   auth_cidr_blocks      = "${var.auth_cidr_blocks}"
-#  master_version    = "${data.google_container_engine_versions.supported.latest_master_version}"
+  master_version        = "${data.google_container_engine_versions.supported.latest_master_version}"
 }
 
 module "workers" {

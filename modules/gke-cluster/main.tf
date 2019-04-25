@@ -5,7 +5,7 @@ resource "google_container_cluster" "k8s-cluster" {
   node_locations     = ["${var.zones}"]
   network            = "${var.network_name}"
   subnetwork         = "${var.subnet_name}"
-#  min_master_version = "${var.master_version}"
+  min_master_version = "${var.master_version}"
   enable_legacy_abac = false
 
   master_authorized_networks_config = {
