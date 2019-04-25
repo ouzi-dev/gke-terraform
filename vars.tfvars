@@ -18,5 +18,8 @@ machine_type = "n1-standard-1"
 machine_disk_size = 100
 machine_is_preemptible = false
 auth_cidr_blocks = [
-  { cidr_block = "0.0.0.0/0", display_name = "everyone" }
+  { 
+    cidr_block = "0.0.0.0/0", 
+    display_name = "everyone" 
+  }
 ]

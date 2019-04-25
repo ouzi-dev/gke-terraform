@@ -4,6 +4,7 @@ variable "region" {
 variable "project" {
   description = "Name of the project"
 }
+
 variable "zones" {
   description = "GKE Cluster zones"
   type = "list"
