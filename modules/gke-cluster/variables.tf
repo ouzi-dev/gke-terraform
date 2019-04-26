@@ -23,3 +23,27 @@ variable "subnet_name" {
 variable "auth_cidr_blocks" {
   type = "list"
 }
+
+variable "daily_maintenance" {
+  default = "02:00"
+}
+
+variable "disable_hpa" {
+  default = false
+}
+
+variable "disable_lb" {
+  default = false
+}
+
+variable "disable_dashboard" {
+  default = false
+}
+
+variable "disable_network_policy" {
+  default = false
+}
+
+variable "enable_calico" {
+  default = true
+}

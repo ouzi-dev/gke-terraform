@@ -63,3 +63,39 @@ variable "machine_disk_size" {
 variable "machine_is_preemptible" {
   description = "If true use preemptible instances"
 }
+
+variable "min_nodes" {
+  description = "Min number of workers"
+  default = 0
+}
+
+variable "max_nodes" {
+  description = "Max number of workers"
+}
+
+variable "daily_maintenance" {
+  default = "02:00"
+}
+
+variable "disable_hpa" {
+  default = false
+}
+
+variable "disable_lb" {
+  default = false
+}
+
+variable "disable_dashboard" {
+  default = false
+}
+
+variable "disable_network_policy" {
+  default = false
+}
+
+variable "enable_calico" {
+  default = true
+}
+
+variable "init_nodes" {
+}

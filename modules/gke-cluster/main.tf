@@ -27,37 +27,29 @@ resource "google_container_cluster" "k8s-cluster" {
 
   maintenance_policy {
     daily_maintenance_window {
-      start_time = "02:00"
+      start_time = "${var.daily_maintenance}"
     }
   }
 
   # Setting an empty username and password explicitly disables basic auth
-  master_auth {
-    username = ""
-    password = ""
-  }
-
   network_policy {
-    enabled = false
+    enabled = "${var.enable_calico}"
     provider = "CALICO"
   }
 
   addons_config {
     horizontal_pod_autoscaling {
-      disabled = false
+      disabled = "${var.disable_hpa}"
     }
     http_load_balancing {
-      disabled = false
+      disabled = "${var.disable_lb}" 
     }
     kubernetes_dashboard  {
-      disabled = false
+      disabled = "${var.disable_dashboard}" 
     }
     network_policy_config {
-      disabled = true
+      disabled = "${var.disable_network_policy}" 
     }
   }
 
-#  cluster_autoscaling {
-#    enabled = true
-#  }
 }

@@ -1,6 +1,6 @@
 region = "europe-west2"
 project = "belitre-gketest-01"
-zones = ["europe-west2-a", "europe-west2-b", "europe-west2-c"]
+zones = ["europe-west2-a", "europe-west2-b"]
 cluster_name = "coolcluster"
 kubernetes_version = "1.12"
 # 1024 nodes max!
@@ -15,11 +15,14 @@ gke_node_scopes = [
   "https://www.googleapis.com/auth/monitoring"
 ]
 machine_type = "n1-standard-1"
-machine_disk_size = 100
-machine_is_preemptible = false
+machine_disk_size = 50
+machine_is_preemptible = true
 auth_cidr_blocks = [
   { 
     cidr_block = "0.0.0.0/0", 
     display_name = "everyone" 
   }
 ]
+min_nodes = 0
+max_nodes = 10
+init_nodes = 1
