@@ -26,3 +26,5 @@ auth_cidr_blocks = [
 min_nodes = 0
 max_nodes = 10
 init_nodes = 1
+disable_lb = true
+disable_dashboard = true

@@ -9,6 +9,8 @@ resource "google_compute_subnetwork" "vpc_subnet" {
   region        = "${var.region}"
   network       = "${google_compute_network.cluster_vpc.self_link}"
 
+  private_ip_google_access = true
+
   secondary_ip_range = {
     range_name = "${var.cluster_name}-pods"
     ip_cidr_range = "${var.pod_cidr_range}"

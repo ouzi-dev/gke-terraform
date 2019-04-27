@@ -1,0 +1,9 @@
+apiVersion: policy/v1beta1
+kind: PodDisruptionBudget
+metadata:
+  name: fluentd-gcp-scaler
+spec:
+  maxUnavailable: 1
+  selector:
+    matchLabels:
+      k8s-app: fluentd-gcp-scaler

@@ -66,11 +66,27 @@ module "default_workers" {
   init_nodes              = "${var.init_nodes}"
 }
 
+module "not_preemptible_workers" {
+  source                  = "./modules/gke-workers"
+  region                  = "${var.region}"
+  cluster_name            = "${var.cluster_name}"
+  group_name              = "expensive"
+  zones                   = "${var.zones}"
+  gke_cluster_name        = "${module.cluster.gke_cluster_name}"
+  gke_node_scopes         = "${var.gke_node_scopes}"
+  machine_type            = "${var.machine_type}"
+  machine_disk_size       = "${var.machine_disk_size}"
+  machine_is_preemptible  = "false"
+  min_nodes               = "${var.min_nodes}"
+  max_nodes               = "${var.max_nodes}"
+  init_nodes              = "0"
+}
+
 module "high_cpu_workers" {
   source                  = "./modules/gke-workers"
   region                  = "${var.region}"
   cluster_name            = "${var.cluster_name}"
-  group_name              = "high-cpu"
+  group_name              = "n1-hc-2"
   zones                   = "${var.zones}"
   gke_cluster_name        = "${module.cluster.gke_cluster_name}"
   gke_node_scopes         = "${var.gke_node_scopes}"
@@ -82,11 +98,27 @@ module "high_cpu_workers" {
   init_nodes              = "0"
 }
 
+module "medium_worker" {
+  source                  = "./modules/gke-workers"
+  region                  = "${var.region}"
+  cluster_name            = "${var.cluster_name}"
+  group_name              = "n1-s-2"
+  zones                   = "${var.zones}"
+  gke_cluster_name        = "${module.cluster.gke_cluster_name}"
+  gke_node_scopes         = "${var.gke_node_scopes}"
+  machine_type            = "n1-standard-2"
+  machine_disk_size       = "${var.machine_disk_size}"
+  machine_is_preemptible  = "${var.machine_is_preemptible}"
+  min_nodes               = "${var.min_nodes}"
+  max_nodes               = "${var.max_nodes}"
+  init_nodes              = "0"
+}
+
 module "big_worker" {
   source                  = "./modules/gke-workers"
   region                  = "${var.region}"
   cluster_name            = "${var.cluster_name}"
-  group_name              = "mid-cpu-mem"
+  group_name              = "n1-s-4"
   zones                   = "${var.zones}"
   gke_cluster_name        = "${module.cluster.gke_cluster_name}"
   gke_node_scopes         = "${var.gke_node_scopes}"
@@ -96,4 +128,11 @@ module "big_worker" {
   min_nodes               = "${var.min_nodes}"
   max_nodes               = "${var.max_nodes}"
   init_nodes              = "0"
+}
+
+module "estafette" {
+  source                  = "./modules/k8s/estafette"
+  cluster_endpoint        = "${module.cluster.endpoint}"
+  cluster_ca_certificate  = "${module.cluster.cluster_ca_certificate}"
+  namespace               = "estafette"
 }
