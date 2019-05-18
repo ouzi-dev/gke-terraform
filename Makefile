@@ -12,14 +12,17 @@ init:
 plan: init
 	terraform plan -var-file=vars.tfvars
 
-apply: init
+apply: init terraform_apply push_secrets
+
+terraform_apply: 
 	terraform apply -var-file=vars.tfvars
 
 destroy: init
 	terraform destroy -var-file=vars.tfvars
 
-apply_pdbs:
-	kubectl apply -f manifests/pdbs -n kube-system
-
 get_kubeconfig:
 	gcloud container clusters get-credentials $(CLUSTER_NAME) --region=$(REGION)
+
+push_secrets:
+	terraform output estafette_secret_json | aws s3 cp - s3://miguel-super-secrets/$(CLUSTER_NAME)/estafette-google-credentials.json 
+	terraform output route53_secret_json | aws s3 cp - s3://miguel-super-secrets/$(CLUSTER_NAME)/route53-aws-credentials.json

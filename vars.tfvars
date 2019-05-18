@@ -14,7 +14,7 @@ gke_node_scopes = [
   "https://www.googleapis.com/auth/logging.write",
   "https://www.googleapis.com/auth/monitoring"
 ]
-machine_type = "n1-standard-1"
+machine_type = "n1-standard-2"
 machine_disk_size = 50
 machine_is_preemptible = true
 auth_cidr_blocks = [
@@ -31,3 +31,5 @@ disable_dashboard = true
 enable_calico = false
 disable_network_policy = true
 disable_hpa = true
+aws_region = "eu-west-1"
+main_hosted_zone = "belitre.com"

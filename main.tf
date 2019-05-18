@@ -66,40 +66,6 @@ module "default_workers" {
   init_nodes              = "${var.init_nodes}"
 }
 
-/*
-module "not_preemptible_workers" {
-  source                  = "./modules/gke-workers"
-  region                  = "${var.region}"
-  cluster_name            = "${var.cluster_name}"
-  group_name              = "expensive"
-  zones                   = "${var.zones}"
-  gke_cluster_name        = "${module.cluster.gke_cluster_name}"
-  gke_node_scopes         = "${var.gke_node_scopes}"
-  machine_type            = "${var.machine_type}"
-  machine_disk_size       = "${var.machine_disk_size}"
-  machine_is_preemptible  = "false"
-  min_nodes               = "${var.min_nodes}"
-  max_nodes               = "${var.max_nodes}"
-  init_nodes              = "0"
-}
-*/
-
-module "medium_worker" {
-  source                  = "./modules/gke-workers"
-  region                  = "${var.region}"
-  cluster_name            = "${var.cluster_name}"
-  group_name              = "n1-s-2"
-  zones                   = "${var.zones}"
-  gke_cluster_name        = "${module.cluster.gke_cluster_name}"
-  gke_node_scopes         = "${var.gke_node_scopes}"
-  machine_type            = "n1-standard-2"
-  machine_disk_size       = "${var.machine_disk_size}"
-  machine_is_preemptible  = "${var.machine_is_preemptible}"
-  min_nodes               = "${var.min_nodes}"
-  max_nodes               = "${var.max_nodes}"
-  init_nodes              = "0"
-}
-
 module "big_worker" {
   source                  = "./modules/gke-workers"
   region                  = "${var.region}"
@@ -116,19 +82,33 @@ module "big_worker" {
   init_nodes              = "0"
 }
 
-module "outputs_configmap" {
-  source                  = "./modules/k8s/outputs-configmap"
-  cluster_endpoint        = "${module.cluster.endpoint}"
-  cluster_ca_certificate  = "${module.cluster.cluster_ca_certificate}"
-  cluster_name            = "${var.cluster_name}"
-  region                  = "${var.region}"
-  estafette_secret        = "estafette-google-credentials"
-}
-
 module "estafette" {
   source                  = "./modules/k8s/estafette"
-  cluster_endpoint        = "${module.cluster.endpoint}"
-  cluster_ca_certificate  = "${module.cluster.cluster_ca_certificate}"
-  namespace               = "estafette"
-  service_account_name    = "estafette-google-credentials"
+  cluster_name            = "${var.cluster_name}"
+  service_account_name    = "${var.estafette_secret_name}"
 }
+
+module "route53" {
+  source                  = "./modules/k8s/route53"
+  aws_region              = "${var.aws_region}"
+  cluster_name            = "${var.cluster_name}"
+  main_hosted_zone        = "${var.main_hosted_zone}"
+  hosted_zone_ttl         = "${var.hosted_zone_ttl}"
+}
+
+module "k8s_bootstrap" {
+  source                                = "./modules/k8s/bootstrap"
+  cluster_endpoint                      = "${module.cluster.endpoint}"
+  cluster_ca_certificate                = "${module.cluster.cluster_ca_certificate}"
+  cluster_name                          = "${var.cluster_name}"
+  region                                = "${var.region}"
+  aws_region                            = "${var.aws_region}"
+  estafette_secret_name                 = "${var.estafette_secret_name}"
+  route53_creds_secret_name             = "${var.route53_creds_secret_name}"
+  estafette_google_service_account_b64  = "${module.estafette.google_service_account_b64}"
+  route53_secret_access_key             = "${module.route53.route53_secret_access_key}"
+  route53_secret_key_id                 = "${module.route53.route53_secret_key_id}"
+  ingress_hosted_zone                   = "${module.route53.ingress_hosted_zone}"
+  ingress_hosted_zone_name              = "${module.route53.ingress_hosted_zone_name}"
+}
+

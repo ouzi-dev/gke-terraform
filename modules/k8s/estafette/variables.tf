@@ -1,10 +1,5 @@
-variable "cluster_ca_certificate" {
+variable "cluster_name" {
 }
 
-variable "cluster_endpoint" {
+variable "service_account_name" {
 }
-
-variable "namespace" {
-}
-
-variable "service_account_name" {}
