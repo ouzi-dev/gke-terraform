@@ -17,4 +17,4 @@ gcloud container clusters get-credentials CLUSTER_NAME --region=REGION
 
 * <s>Add controller to avoid multiple nodes dying at the same time: https://github.com/estafette/estafette-gke-preemptible-killer</s>
 
-* Avoid DNS problems and stuff like that with: https://github.com/GoogleCloudPlatform/k8s-node-termination-handler
+* <s>Avoid DNS problems and stuff like that with: https://github.com/GoogleCloudPlatform/k8s-node-termination-handler</s>
