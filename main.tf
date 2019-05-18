@@ -21,6 +21,7 @@ module "network" {
   node_cidr_range      = "${var.node_cidr_range}"
   pod_cidr_range       = "${var.pod_cidr_range}"
   service_cidr_range   = "${var.service_cidr_range}"
+  master_cidr_range    = "${var.master_cidr_range}"
 }
 
 module "nat" {

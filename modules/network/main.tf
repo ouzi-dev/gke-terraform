@@ -21,3 +21,20 @@ resource "google_compute_subnetwork" "vpc_subnet" {
     ip_cidr_range = "${var.service_cidr_range}"
   }
 }
+
+resource "google_compute_firewall" "allow_ssh_workers_from_masters" {
+  name    = "${var.cluster_name}-allow-ssh-workers-from-masters"
+  network = "${google_compute_network.cluster_vpc.name}"
+  direction = "INGRESS"
+
+  allow {
+    protocol = "icmp"
+  }
+
+  allow {
+    protocol = "tcp"
+    ports    = ["443", "6443"]
+  }
+
+  source_ranges = ["${var.master_cidr_range}"]
+}
