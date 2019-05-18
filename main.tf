@@ -66,6 +66,7 @@ module "default_workers" {
   init_nodes              = "${var.init_nodes}"
 }
 
+/*
 module "not_preemptible_workers" {
   source                  = "./modules/gke-workers"
   region                  = "${var.region}"
@@ -81,22 +82,7 @@ module "not_preemptible_workers" {
   max_nodes               = "${var.max_nodes}"
   init_nodes              = "0"
 }
-
-module "high_cpu_workers" {
-  source                  = "./modules/gke-workers"
-  region                  = "${var.region}"
-  cluster_name            = "${var.cluster_name}"
-  group_name              = "n1-hc-2"
-  zones                   = "${var.zones}"
-  gke_cluster_name        = "${module.cluster.gke_cluster_name}"
-  gke_node_scopes         = "${var.gke_node_scopes}"
-  machine_type            = "n1-highcpu-2"
-  machine_disk_size       = "${var.machine_disk_size}"
-  machine_is_preemptible  = "${var.machine_is_preemptible}"
-  min_nodes               = "${var.min_nodes}"
-  max_nodes               = "${var.max_nodes}"
-  init_nodes              = "0"
-}
+*/
 
 module "medium_worker" {
   source                  = "./modules/gke-workers"
@@ -130,9 +116,19 @@ module "big_worker" {
   init_nodes              = "0"
 }
 
+module "outputs_configmap" {
+  source                  = "./modules/k8s/outputs-configmap"
+  cluster_endpoint        = "${module.cluster.endpoint}"
+  cluster_ca_certificate  = "${module.cluster.cluster_ca_certificate}"
+  cluster_name            = "${var.cluster_name}"
+  region                  = "${var.region}"
+  estafette_secret        = "estafette-google-credentials"
+}
+
 module "estafette" {
   source                  = "./modules/k8s/estafette"
   cluster_endpoint        = "${module.cluster.endpoint}"
   cluster_ca_certificate  = "${module.cluster.cluster_ca_certificate}"
   namespace               = "estafette"
+  service_account_name    = "estafette-google-credentials"
 }

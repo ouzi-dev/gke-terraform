@@ -24,7 +24,10 @@ auth_cidr_blocks = [
   }
 ]
 min_nodes = 0
-max_nodes = 10
+max_nodes = 4
 init_nodes = 1
 disable_lb = true
 disable_dashboard = true
+enable_calico = false
+disable_network_policy = true
+disable_hpa = true

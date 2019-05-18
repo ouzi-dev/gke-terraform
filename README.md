@@ -17,4 +17,4 @@ gcloud container clusters get-credentials CLUSTER_NAME --region=REGION
 
 * Add controller to avoid multiple nodes dying at the same time: https://github.com/estafette/estafette-gke-preemptible-killer
 
-* Add pool shifter: https://github.com/estafette/estafette-gke-node-pool-shifter
+* Avoid DNS problems and stuff like that with: https://github.com/GoogleCloudPlatform/k8s-node-termination-handler

@@ -38,10 +38,10 @@ resource "google_service_account_key" "estafette-key" {
 
 resource "kubernetes_secret" "google-application-credentials" {
   metadata = {
-    name = "estafette-google-credentials"
+    name = "${var.service_account_name}"
     namespace = "${var.namespace}"
   }
   data {
-    credentials.json = "${base64decode(google_service_account_key.estafette-key.private_key)}"
+    google-service-account.json = "${base64decode(google_service_account_key.estafette-key.private_key)}"
   }
 }

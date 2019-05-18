@@ -31,7 +31,6 @@ resource "google_container_cluster" "k8s-cluster" {
     }
   }
 
-  # Setting an empty username and password explicitly disables basic auth
   network_policy {
     enabled = "${var.enable_calico}"
     provider = "CALICO"
