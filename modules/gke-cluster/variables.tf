@@ -47,3 +47,7 @@ variable "disable_network_policy" {
 variable "enable_calico" {
   default = true
 }
+
+variable "logging_service" {
+  default = "none"
+}

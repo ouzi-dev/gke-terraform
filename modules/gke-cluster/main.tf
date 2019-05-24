@@ -8,6 +8,8 @@ resource "google_container_cluster" "k8s-cluster" {
   min_master_version = "${var.master_version}"
   enable_legacy_abac = false
 
+  logging_service = "${var.logging_service}"
+
   master_authorized_networks_config = {
     cidr_blocks = ["${var.auth_cidr_blocks}"]
   }
