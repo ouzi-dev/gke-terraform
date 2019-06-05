@@ -10,4 +10,3 @@ variable "main_hosted_zone" {
 variable "hosted_zone_ttl" {
 }
 
-

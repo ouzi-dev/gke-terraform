@@ -2,7 +2,7 @@ variable "region" {
 }
 
 variable "zones" {
-  type = "list"
+  type = list(string)
 }
 
 variable "cluster_name" {
@@ -15,7 +15,7 @@ variable "gke_cluster_name" {
 }
 
 variable "gke_node_scopes" {
-  type = "list"
+  type = list(string)
 }
 
 variable "machine_type" {
@@ -36,3 +36,4 @@ variable "max_nodes" {
 
 variable "init_nodes" {
 }
+

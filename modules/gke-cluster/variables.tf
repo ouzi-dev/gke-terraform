@@ -2,7 +2,7 @@ variable "region" {
 }
 
 variable "zones" {
-  type = "list"
+  type = list(string)
 }
 
 variable "cluster_name" {
@@ -21,7 +21,7 @@ variable "subnet_name" {
 }
 
 variable "auth_cidr_blocks" {
-  type = "list"
+  type = list
 }
 
 variable "daily_maintenance" {
@@ -51,3 +51,4 @@ variable "enable_calico" {
 variable "logging_service" {
   default = "none"
 }
+

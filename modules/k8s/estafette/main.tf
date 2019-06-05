@@ -4,19 +4,20 @@ resource "google_service_account" "estafette_service_account" {
 }
 
 resource "google_project_iam_binding" "estafette_compute_engine_admin_role" {
-  role    = "roles/compute.admin"
+  role = "roles/compute.admin"
   members = [
-    "serviceAccount:${google_service_account.estafette_service_account.email}"
+    "serviceAccount:${google_service_account.estafette_service_account.email}",
   ]
 }
 
 resource "google_project_iam_binding" "estafette_kubernetes_engine_admin_role" {
-  role    = "roles/container.admin"
+  role = "roles/container.admin"
   members = [
-    "serviceAccount:${google_service_account.estafette_service_account.email}"
+    "serviceAccount:${google_service_account.estafette_service_account.email}",
   ]
 }
 
 resource "google_service_account_key" "estafette_key" {
-  service_account_id = "${google_service_account.estafette_service_account.name}"
+  service_account_id = google_service_account.estafette_service_account.name
 }
+

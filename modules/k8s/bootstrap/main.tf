@@ -1,26 +1,27 @@
-data "google_client_config" "current" {}
+data "google_client_config" "current" {
+}
 
 provider "kubernetes" {
-  host                   = "${var.cluster_endpoint}"
-  cluster_ca_certificate = "${base64decode(var.cluster_ca_certificate)}"
-  token                  = "${data.google_client_config.current.access_token}"
+  host                   = var.cluster_endpoint
+  cluster_ca_certificate = base64decode(var.cluster_ca_certificate)
+  token                  = data.google_client_config.current.access_token
   load_config_file       = false
 }
 
 resource "kubernetes_config_map" "terraform_outputs" {
   metadata {
-    name = "terraform-outputs"
+    name      = "terraform-outputs"
     namespace = "kube-system"
   }
 
-  data {
-    cluster_name                   = "${var.cluster_name}"
-    region                         = "${var.region}"
-    estafette_secret_name          = "${var.estafette_secret_name}"
-    route53_creds_secret_name      = "${var.route53_creds_secret_name}"
-    aws_region                     = "${var.aws_region}"
-    hosted_zone_id                 = "${var.ingress_hosted_zone}"
-    hosted_zone_name               = "${var.ingress_hosted_zone_name}"
+  data = {
+    cluster_name              = var.cluster_name
+    region                    = var.region
+    estafette_secret_name     = var.estafette_secret_name
+    route53_creds_secret_name = var.route53_creds_secret_name
+    aws_region                = var.aws_region
+    hosted_zone_id            = var.ingress_hosted_zone
+    hosted_zone_name          = var.ingress_hosted_zone_name
   }
 }
 
@@ -40,6 +41,7 @@ locals {
 }
 SECRET
 
+
   estaffete_secret_json = <<SECRET
 {
     "apiVersion": "v1",
@@ -53,4 +55,6 @@ SECRET
     }
 }
 SECRET
+
 }
+

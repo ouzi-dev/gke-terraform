@@ -1,13 +1,14 @@
 variable "region" {
   description = "GKE cluster region"
 }
+
 variable "project" {
   description = "Name of the project"
 }
 
 variable "zones" {
   description = "GKE Cluster zones"
-  type = "list"
+  type        = list(string)
 }
 
 variable "cluster_name" {
@@ -31,20 +32,19 @@ variable "master_cidr_range" {
   description = "CIDR range for masters"
 }
 
-
 variable "gke_node_scopes" {
   description = "The GKE node scopes"
-  type = "list"
+  type        = list(string)
   default = [
     "https://www.googleapis.com/auth/compute",
     "https://www.googleapis.com/auth/devstorage.read_write",
     "https://www.googleapis.com/auth/logging.write",
-    "https://www.googleapis.com/auth/monitoring"
+    "https://www.googleapis.com/auth/monitoring",
   ]
 }
 
 variable "auth_cidr_blocks" {
-  type = "list"
+  type        = list
   description = "Authorized cidr blocks for the API"
 }
 
@@ -66,7 +66,7 @@ variable "machine_is_preemptible" {
 
 variable "min_nodes" {
   description = "Min number of workers"
-  default = 0
+  default     = 0
 }
 
 variable "max_nodes" {
@@ -109,8 +109,8 @@ variable "main_hosted_zone" {
 }
 
 variable "hosted_zone_ttl" {
-    description = "TTL for the new hosted zone"
-    default = "900"
+  description = "TTL for the new hosted zone"
+  default     = "900"
 }
 
 variable "estafette_secret_name" {
@@ -120,3 +120,4 @@ variable "estafette_secret_name" {
 variable "route53_creds_secret_name" {
   default = "route53-aws-credentials"
 }
+
