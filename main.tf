@@ -66,6 +66,7 @@ module "default_workers" {
   init_nodes             = var.init_nodes
 }
 
+/*
 module "big_worker" {
   source                 = "./modules/gke-workers"
   region                 = var.region
@@ -81,6 +82,7 @@ module "big_worker" {
   max_nodes              = var.max_nodes
   init_nodes             = "0"
 }
+*/
 
 module "estafette" {
   source               = "./modules/k8s/estafette"
