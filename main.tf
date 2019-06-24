@@ -24,12 +24,13 @@ module "network" {
 }
 
 module "nat" {
-  source     = "./modules/nat/nat-gateway"
-  region     = var.region
-  tags       = [var.cluster_name]
-  network    = module.network.network_name
-  subnetwork = module.network.subnet_name
-  project    = var.project
+  source       = "./modules/nat/nat-gateway"
+  region       = var.region
+  tags         = [var.cluster_name]
+  network      = module.network.network_name
+  subnetwork   = module.network.subnet_name
+  project      = var.project
+  machine_type = "g1-small"
 }
 
 module "cluster" {
