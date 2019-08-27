@@ -18,30 +18,10 @@ resource "kubernetes_config_map" "terraform_outputs" {
     cluster_name              = var.cluster_name
     region                    = var.region
     estafette_secret_name     = var.estafette_secret_name
-    route53_creds_secret_name = var.route53_creds_secret_name
-    aws_region                = var.aws_region
-    hosted_zone_id            = var.ingress_hosted_zone
-    hosted_zone_name          = var.ingress_hosted_zone_name
   }
 }
 
 locals {
-  route53_secret_json = <<SECRET
-{
-    "apiVersion": "v1",
-    "kind": "Secret",
-    "type": "Opaque",
-    "metadata": {
-        "name": "${var.route53_creds_secret_name}"
-    },
-    "data": {
-        "AWS_ACCESS_KEY_ID": "${base64encode(var.route53_secret_key_id)}",
-        "AWS_SECRET_ACCESS_KEY": "${base64encode(var.route53_secret_access_key)}"
-    }
-}
-SECRET
-
-
   estaffete_secret_json = <<SECRET
 {
     "apiVersion": "v1",

@@ -44,7 +44,6 @@ resource "google_container_cluster" "k8s-cluster" {
 
   network_policy {
     enabled = var.enable_calico
-    #  provider = "CALICO"
   }
 
   addons_config {

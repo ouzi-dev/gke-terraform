@@ -100,24 +100,6 @@ variable "enable_calico" {
 variable "init_nodes" {
 }
 
-variable "aws_region" {
-  description = "AWS region, to create iam roles for external DNS with Route53"
-}
-
-variable "main_hosted_zone" {
-  description = "Main hosted zone in route 53, terraform will create a new one like: cluster_name.main_hosted_zone"
-}
-
-variable "hosted_zone_ttl" {
-  description = "TTL for the new hosted zone"
-  default     = "900"
-}
-
 variable "estafette_secret_name" {
   default = "estafette-google-credentials"
 }
-
-variable "route53_creds_secret_name" {
-  default = "route53-aws-credentials"
-}
-
