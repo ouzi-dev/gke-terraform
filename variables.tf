@@ -103,3 +103,8 @@ variable "init_nodes" {
 variable "estafette_secret_name" {
   default = "estafette-google-credentials"
 }
+
+variable "authenticator_groups_security_group" {
+  type = string
+  default = null
+}

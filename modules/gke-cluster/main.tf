@@ -1,4 +1,5 @@
 resource "google_container_cluster" "k8s-cluster" {
+  provider           = "google-beta"
   name               = var.cluster_name
   description        = "${var.cluster_name} k8s cluster"
   location           = var.region
@@ -45,6 +46,10 @@ resource "google_container_cluster" "k8s-cluster" {
   network_policy {
     enabled = var.enable_calico
   }
+
+  authenticator_groups_config {
+    security_group = var.authenticator_groups_security_group
+  } 
 
   addons_config {
     horizontal_pod_autoscaling {

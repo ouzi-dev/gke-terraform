@@ -33,6 +33,7 @@ module "cluster" {
   disable_lb             = var.disable_lb
   disable_dashboard      = var.disable_dashboard
   disable_network_policy = var.disable_network_policy
+  authenticator_groups_security_group = var.authenticator_groups_security_group
   enable_calico          = var.enable_calico
 }
 

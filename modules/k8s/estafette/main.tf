@@ -20,4 +20,3 @@ resource "google_project_iam_binding" "estafette_kubernetes_engine_admin_role" {
 resource "google_service_account_key" "estafette_key" {
   service_account_id = google_service_account.estafette_service_account.name
 }
-

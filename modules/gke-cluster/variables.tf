@@ -52,3 +52,9 @@ variable "logging_service" {
   default = "none"
 }
 
+variable "authenticator_groups_security_group" {
+  type = string
+  default = null
+}
+
+
