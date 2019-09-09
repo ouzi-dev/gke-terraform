@@ -1,13 +1,3 @@
-provider "google" {
-  region  = var.region
-  project = var.project
-}
-
-provider "google-beta" {
-  region  = var.region
-  project = var.project
-}
-
 module "network" {
   source             = "./modules/network"
   region             = var.region
