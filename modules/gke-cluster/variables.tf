@@ -53,7 +53,7 @@ variable "logging_service" {
 }
 
 variable "authenticator_groups_security_group" {
-  type = string
+  type    = string
   default = null
 }
 

@@ -56,6 +56,10 @@ variable "machine_type" {
   description = "Instance type for the primary pool of workers"
 }
 
+variable "big_machine_type" {
+  description = "Instance type for the beefier pool of workers"
+}
+
 variable "machine_disk_size" {
   description = "Disk size for the primary pool of workers"
 }
@@ -100,11 +104,7 @@ variable "enable_calico" {
 variable "init_nodes" {
 }
 
-variable "estafette_secret_name" {
-  default = "estafette-google-credentials"
-}
-
 variable "authenticator_groups_security_group" {
-  type = string
+  type    = string
   default = null
 }

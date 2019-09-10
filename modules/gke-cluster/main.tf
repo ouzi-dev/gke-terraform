@@ -49,7 +49,7 @@ resource "google_container_cluster" "k8s-cluster" {
 
   authenticator_groups_config {
     security_group = var.authenticator_groups_security_group
-  } 
+  }
 
   addons_config {
     horizontal_pod_autoscaling {
