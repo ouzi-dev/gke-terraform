@@ -1,3 +1,4 @@
 bootstrap/.terraform
 .terraform
 terraform.tfstate.backup
+node_modules/
