@@ -1,5 +1,6 @@
 resource "google_container_node_pool" "k8s-worker-pool" {
-  name               = "${var.cluster_name}-${var.group_name}"
+  provider           = google-beta
+  name               = "${var.gke_cluster_name}-${var.group_name}"
   location           = var.region
   cluster            = var.gke_cluster_name
   initial_node_count = var.init_nodes
@@ -15,6 +16,7 @@ resource "google_container_node_pool" "k8s-worker-pool" {
   node_config {
     preemptible  = var.machine_is_preemptible
     machine_type = var.machine_type
+    disk_type    = var.machine_disk_type
     disk_size_gb = var.machine_disk_size
     oauth_scopes = var.gke_node_scopes
 
@@ -22,7 +24,15 @@ resource "google_container_node_pool" "k8s-worker-pool" {
       disable-legacy-endpoints = "true"
     }
 
-    tags = [var.cluster_name]
+    dynamic "taint" {
+      for_each = var.machine_taints
+      iterator = item
+      content {
+        effect = item.value.effect
+        key    = item.value.key
+        value  = item.value.value
+      }
+    }
   }
 
   management {

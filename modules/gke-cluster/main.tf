@@ -1,5 +1,5 @@
 resource "google_container_cluster" "k8s-cluster" {
-  provider           = "google-beta"
+  provider           = google-beta
   name               = var.cluster_name
   description        = "${var.cluster_name} k8s cluster"
   location           = var.region
@@ -25,8 +25,9 @@ resource "google_container_cluster" "k8s-cluster" {
   }
 
   private_cluster_config {
-    enable_private_nodes   = true
-    master_ipv4_cidr_block = var.master_cidr_range
+    enable_private_nodes    = true
+    master_ipv4_cidr_block  = var.master_cidr_range
+    enable_private_endpoint = var.enable_private_endpoint
   }
 
   ip_allocation_policy {

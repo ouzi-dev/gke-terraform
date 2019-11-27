@@ -30,7 +30,6 @@ module "cluster" {
 module "default_workers" {
   source                 = "./modules/gke-workers"
   region                 = var.region
-  cluster_name           = var.cluster_name
   group_name             = "default"
   zones                  = var.zones
   gke_cluster_name       = module.cluster.gke_cluster_name
@@ -46,7 +45,6 @@ module "default_workers" {
 module "big_worker" {
   source                 = "./modules/gke-workers"
   region                 = var.region
-  cluster_name           = var.cluster_name
   group_name             = "big"
   zones                  = var.zones
   gke_cluster_name       = module.cluster.gke_cluster_name
