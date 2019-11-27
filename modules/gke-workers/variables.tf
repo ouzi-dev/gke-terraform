@@ -33,6 +33,11 @@ variable "machine_taints" {
   default = []
 }
 
+variable "machine_labels" {
+  type    = map(string)
+  default = {}
+}
+
 variable "min_nodes" {
   default = 0
 }

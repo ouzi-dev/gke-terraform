@@ -32,7 +32,11 @@ resource "google_container_node_pool" "k8s-worker-pool" {
         value  = item.value.value
       }
     }
+
+    labels = var.machine_labels
+
   }
+
 
   management {
     auto_repair  = true
