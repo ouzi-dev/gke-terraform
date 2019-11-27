@@ -5,9 +5,6 @@ variable "zones" {
   type = list(string)
 }
 
-variable "cluster_name" {
-}
-
 variable "group_name" {
 }
 
@@ -21,10 +18,19 @@ variable "gke_node_scopes" {
 variable "machine_type" {
 }
 
+variable "machine_disk_type" {
+  default = "pd-standard"
+}
+
 variable "machine_disk_size" {
 }
 
 variable "machine_is_preemptible" {
+}
+
+variable "machine_taints" {
+  type    = list(map(string))
+  default = []
 }
 
 variable "min_nodes" {

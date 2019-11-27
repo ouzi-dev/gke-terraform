@@ -1,3 +1,7 @@
+.PHONY: init
+init:
+	@terraform init
+
 .PHONY: validate
 validate:
 	@terraform validate 

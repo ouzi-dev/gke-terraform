@@ -57,4 +57,7 @@ variable "authenticator_groups_security_group" {
   default = null
 }
 
-
+variable "enable_private_endpoint" {
+  description = "When true, the cluster's private endpoint is used as the cluster endpoint and access through the public endpoint is disabled. When false, either endpoint can be used. This field only applies to private clusters, when enable_private_nodes is true"
+  default     = false
+}
