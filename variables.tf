@@ -64,6 +64,11 @@ variable "machine_disk_size" {
   description = "Disk size for the primary pool of workers"
 }
 
+variable "machine_disk_type" {
+  description = "Disk type for the primary pool of workers"
+  default = "pd-standard"
+}
+
 variable "machine_is_preemptible" {
   description = "If true use preemptible instances"
 }
