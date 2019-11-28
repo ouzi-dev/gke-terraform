@@ -36,6 +36,7 @@ module "default_workers" {
   gke_node_scopes        = var.gke_node_scopes
   machine_type           = var.machine_type
   machine_disk_size      = var.machine_disk_size
+  machine_disk_type      = var.machine_disk_type
   machine_is_preemptible = var.machine_is_preemptible
   min_nodes              = var.min_nodes
   max_nodes              = var.max_nodes
@@ -51,6 +52,7 @@ module "big_worker" {
   gke_node_scopes        = var.gke_node_scopes
   machine_type           = var.big_machine_type
   machine_disk_size      = var.machine_disk_size
+  machine_disk_type      = var.machine_disk_type
   machine_is_preemptible = var.machine_is_preemptible
   min_nodes              = var.min_nodes
   max_nodes              = var.max_nodes
