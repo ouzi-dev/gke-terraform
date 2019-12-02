@@ -106,6 +106,11 @@ variable "enable_calico" {
   default = true
 }
 
+variable "network_allow_workers_ports_from_master" {
+  type = list
+  default = ["443", "6443", "8443"]
+}
+
 variable "init_nodes" {
 }
 

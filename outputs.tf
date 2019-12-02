@@ -9,5 +9,5 @@ output "cluster_ca_certificate" {
 }
 
 output "cluster_network_name" {
-  value = google_compute_network.cluster_vpc.name
+  value = module.network.network_name
 }
