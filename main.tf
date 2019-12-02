@@ -6,6 +6,7 @@ module "network" {
   pod_cidr_range     = var.pod_cidr_range
   service_cidr_range = var.service_cidr_range
   master_cidr_range  = var.master_cidr_range
+  workers_ports_from_master = var.network_allow_workers_ports_from_master
 }
 
 module "cluster" {

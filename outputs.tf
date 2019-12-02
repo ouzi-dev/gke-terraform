@@ -8,3 +8,6 @@ output "cluster_ca_certificate" {
   sensitive = true
 }
 
+output "cluster_network_name" {
+  value = module.network.network_name
+}
