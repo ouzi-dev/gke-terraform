@@ -21,8 +21,8 @@ resource "google_compute_subnetwork" "vpc_subnet" {
   }
 }
 
-resource "google_compute_firewall" "allow_ssh_workers_from_masters" {
-  name      = "${var.cluster_name}-allow-ssh-workers-from-masters"
+resource "google_compute_firewall" "allow_workers_from_master" {
+  name      = "${var.cluster_name}-allow-workers-from-master"
   network   = google_compute_network.cluster_vpc.name
   direction = "INGRESS"
 
@@ -32,7 +32,7 @@ resource "google_compute_firewall" "allow_ssh_workers_from_masters" {
 
   allow {
     protocol = "tcp"
-    ports    = ["443", "6443"]
+    ports    = var.workers_ports_from_master
   }
 
   source_ranges = [var.master_cidr_range]
