@@ -49,7 +49,11 @@ variable "enable_calico" {
 }
 
 variable "logging_service" {
-  default = "none"
+  default = "logging.googleapis.com/kubernetes"
+}
+
+variable "monitoring_service" {
+  default = "monitoring.googleapis.com/kubernetes"
 }
 
 variable "authenticator_groups_security_group" {
