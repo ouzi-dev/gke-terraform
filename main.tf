@@ -1,11 +1,11 @@
 module "network" {
-  source             = "./modules/network"
-  region             = var.region
-  cluster_name       = var.cluster_name
-  node_cidr_range    = var.node_cidr_range
-  pod_cidr_range     = var.pod_cidr_range
-  service_cidr_range = var.service_cidr_range
-  master_cidr_range  = var.master_cidr_range
+  source                    = "./modules/network"
+  region                    = var.region
+  cluster_name              = var.cluster_name
+  node_cidr_range           = var.node_cidr_range
+  pod_cidr_range            = var.pod_cidr_range
+  service_cidr_range        = var.service_cidr_range
+  master_cidr_range         = var.master_cidr_range
   workers_ports_from_master = var.network_allow_workers_ports_from_master
 }
 
@@ -26,6 +26,8 @@ module "cluster" {
   disable_network_policy              = var.disable_network_policy
   authenticator_groups_security_group = var.authenticator_groups_security_group
   enable_calico                       = var.enable_calico
+  logging_service                     = var.logging_service
+  monitoring_service                  = var.monitoring_service
 }
 
 module "default_workers" {

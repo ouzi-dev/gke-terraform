@@ -9,7 +9,9 @@ resource "google_container_cluster" "k8s-cluster" {
   min_master_version = var.master_version
   enable_legacy_abac = false
 
-  logging_service = var.logging_service
+  logging_service    = var.logging_service
+  monitoring_service = var.monitoring_service
+
   lifecycle {
     ignore_changes = [min_master_version]
   }
@@ -58,9 +60,6 @@ resource "google_container_cluster" "k8s-cluster" {
     }
     http_load_balancing {
       disabled = var.disable_lb
-    }
-    kubernetes_dashboard {
-      disabled = var.disable_dashboard
     }
     network_policy_config {
       disabled = var.disable_network_policy

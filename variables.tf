@@ -66,7 +66,7 @@ variable "machine_disk_size" {
 
 variable "machine_disk_type" {
   description = "Disk type for the primary pool of workers"
-  default = "pd-standard"
+  default     = "pd-standard"
 }
 
 variable "machine_is_preemptible" {
@@ -107,7 +107,7 @@ variable "enable_calico" {
 }
 
 variable "network_allow_workers_ports_from_master" {
-  type = list
+  type    = list
   default = ["443", "6443", "8443"]
 }
 
@@ -117,4 +117,12 @@ variable "init_nodes" {
 variable "authenticator_groups_security_group" {
   type    = string
   default = null
+}
+
+variable "logging_service" {
+  default = "logging.googleapis.com/kubernetes"
+}
+
+variable "monitoring_service" {
+  default = "monitoring.googleapis.com/kubernetes"
 }
