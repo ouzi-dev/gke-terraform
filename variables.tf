@@ -56,10 +56,6 @@ variable "machine_type" {
   description = "Instance type for the primary pool of workers"
 }
 
-variable "big_machine_type" {
-  description = "Instance type for the beefier pool of workers"
-}
-
 variable "machine_disk_size" {
   description = "Disk size for the primary pool of workers"
 }
