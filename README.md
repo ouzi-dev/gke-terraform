@@ -22,7 +22,6 @@ module "gke-cluster" {
   kubernetes_version = var.gke_kubernetes_version
 
   machine_type           = var.gke_machine_type
-  big_machine_type       = var.gke_big_machine_type
   machine_disk_size      = var.gke_machine_disk_size
   machine_is_preemptible = var.gke_machine_is_preemptible
   min_nodes              = var.gke_min_nodes
