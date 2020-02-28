@@ -28,6 +28,8 @@ module "cluster" {
   enable_calico                       = var.enable_calico
   logging_service                     = var.logging_service
   monitoring_service                  = var.monitoring_service
+  disable_istio                       = var.disable_istio
+  istio_config_auth                   = var.istio_config_auth
 }
 
 module "default_workers" {

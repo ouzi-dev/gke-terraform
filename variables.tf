@@ -122,3 +122,11 @@ variable "logging_service" {
 variable "monitoring_service" {
   default = "monitoring.googleapis.com/kubernetes"
 }
+
+variable "disable_istio" {
+  default = true
+}
+
+variable "istio_config_auth" {
+  default = "AUTH_MUTUAL_TLS"
+}
