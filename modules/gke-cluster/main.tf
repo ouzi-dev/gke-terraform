@@ -64,6 +64,10 @@ resource "google_container_cluster" "k8s-cluster" {
     network_policy_config {
       disabled = var.disable_network_policy
     }
+    istio_config {
+      disabled = var.disable_istio
+      auth = var.istio_config_auth
+    }
   }
 }
 
