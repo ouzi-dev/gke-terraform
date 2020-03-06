@@ -46,4 +46,6 @@ module "default_workers" {
   min_nodes              = var.min_nodes
   max_nodes              = var.max_nodes
   init_nodes             = var.init_nodes
+  max_surge              = var.max_surge
+  max_unavailable        = var.max_unavailable
 }
