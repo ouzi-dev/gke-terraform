@@ -48,3 +48,8 @@ variable "max_nodes" {
 variable "init_nodes" {
 }
 
+variable "max_surge" {
+}
+
+variable "max_unavailable" {
+}

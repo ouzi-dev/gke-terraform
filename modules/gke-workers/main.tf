@@ -47,5 +47,10 @@ resource "google_container_node_pool" "k8s-worker-pool" {
     max_node_count = var.max_nodes
     min_node_count = var.min_nodes
   }
+
+  upgrade_settings {
+    max_surge       = var.max_surge
+    max_unavailable = var.max_unavailable
+  }
 }
 

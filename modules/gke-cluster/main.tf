@@ -66,7 +66,7 @@ resource "google_container_cluster" "k8s-cluster" {
     }
     istio_config {
       disabled = var.disable_istio
-      auth = var.istio_config_auth
+      auth     = var.istio_config_auth
     }
   }
 }

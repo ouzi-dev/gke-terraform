@@ -78,6 +78,14 @@ variable "max_nodes" {
   description = "Max number of workers"
 }
 
+variable "max_surge" {
+  default = 1
+}
+
+variable "max_unavailable" {
+  default = 0
+}
+
 variable "daily_maintenance" {
   default = "02:00"
 }
