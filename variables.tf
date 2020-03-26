@@ -139,26 +139,29 @@ variable "istio_config_auth" {
   default = "AUTH_MUTUAL_TLS"
 }
 
+# https://cloud.google.com/kubernetes-engine/docs/how-to/node-auto-provisioning
 variable "cluster_autoscaling" {
-  default = true
+  default = false
 }
 
+# OPTIMIZE_UTILIZATION or BALANCED
 variable "cluster_autoscaling_profile" {
+  type = string
   default = "OPTIMIZE_UTILIZATION"
 }
 
 variable "cluster_autoscaling_min_cpu" {
-  default = 2
+  type = number
 }
 
 variable "cluster_autoscaling_max_cpu" {
-  default = 12
+  type = number
 }
 
 variable "cluster_autoscaling_min_memory" {
-  default = 8
+  type = number
 }
 
 variable "cluster_autoscaling_max_memory" {
-  default = 48
+  type = number
 }
