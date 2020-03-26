@@ -54,12 +54,10 @@ variable "kubernetes_version" {
 
 variable "machine_type" {
   description = "Instance type for the primary pool of workers"
-  default     = "n2-standard-4"
 }
 
 variable "machine_disk_size" {
   description = "Disk size for the primary pool of workers"
-  default     = 50
 }
 
 variable "machine_disk_type" {
@@ -69,7 +67,6 @@ variable "machine_disk_type" {
 
 variable "machine_is_preemptible" {
   description = "If true use preemptible instances"
-  default     = true
 }
 
 variable "min_nodes" {
@@ -79,7 +76,6 @@ variable "min_nodes" {
 
 variable "max_nodes" {
   description = "Max number of workers"
-  default     = 4
 }
 
 variable "max_surge" {
