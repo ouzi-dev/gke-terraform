@@ -54,10 +54,12 @@ variable "kubernetes_version" {
 
 variable "machine_type" {
   description = "Instance type for the primary pool of workers"
+  default     = "n2-standard-4"
 }
 
 variable "machine_disk_size" {
   description = "Disk size for the primary pool of workers"
+  default     = 50
 }
 
 variable "machine_disk_type" {
@@ -67,6 +69,7 @@ variable "machine_disk_type" {
 
 variable "machine_is_preemptible" {
   description = "If true use preemptible instances"
+  default     = true
 }
 
 variable "min_nodes" {
@@ -76,6 +79,7 @@ variable "min_nodes" {
 
 variable "max_nodes" {
   description = "Max number of workers"
+  default     = 4
 }
 
 variable "max_surge" {
@@ -137,4 +141,28 @@ variable "disable_istio" {
 
 variable "istio_config_auth" {
   default = "AUTH_MUTUAL_TLS"
+}
+
+variable "cluster_autoscaling" {
+  default = true
+}
+
+variable "cluster_autoscaling_profile" {
+  default = "OPTIMIZE_UTILIZATION"
+}
+
+variable "cluster_autoscaling_min_cpu" {
+  default = 2
+}
+
+variable "cluster_autoscaling_max_cpu" {
+  default = 12
+}
+
+variable "cluster_autoscaling_min_memory" {
+  default = 8
+}
+
+variable "cluster_autoscaling_max_memory" {
+  default = 48
 }

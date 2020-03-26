@@ -71,3 +71,20 @@ variable "disable_istio" {
 
 variable "istio_config_auth" {
 }
+
+variable "cluster_autoscaling" {
+  type    = bool
+  default = false
+}
+
+variable "cluster_autoscaling_profile" {}
+
+variable "cluster_autoscaling_min_cpu" {}
+
+variable "cluster_autoscaling_max_cpu" {}
+
+variable "cluster_autoscaling_min_memory" {}
+
+variable "cluster_autoscaling_max_memory" {}
+
+variable "cluster_autoscaling_gke_scopes" {}
