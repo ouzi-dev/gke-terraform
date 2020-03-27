@@ -30,10 +30,20 @@ module "cluster" {
   monitoring_service                  = var.monitoring_service
   disable_istio                       = var.disable_istio
   istio_config_auth                   = var.istio_config_auth
+  cluster_autoscaling                 = var.cluster_autoscaling
+  cluster_autoscaling_profile         = var.cluster_autoscaling_profile
+  cluster_autoscaling_min_cpu         = var.cluster_autoscaling_min_cpu
+  cluster_autoscaling_max_cpu         = var.cluster_autoscaling_max_cpu
+  cluster_autoscaling_min_memory      = var.cluster_autoscaling_min_memory
+  cluster_autoscaling_max_memory      = var.cluster_autoscaling_max_memory
+  cluster_autoscaling_gke_scopes      = var.gke_node_scopes
 }
 
 module "default_workers" {
-  source                 = "./modules/gke-workers"
+  source = "./modules/gke-workers"
+
+  enabled = var.cluster_autoscaling ? false : true
+
   region                 = var.region
   group_name             = "default"
   zones                  = var.zones

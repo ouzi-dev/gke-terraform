@@ -40,6 +40,24 @@ resource "google_container_cluster" "k8s-cluster" {
   remove_default_node_pool = true
   initial_node_count       = 1
 
+  cluster_autoscaling {
+    enabled             = var.cluster_autoscaling
+    autoscaling_profile = var.cluster_autoscaling_profile
+    resource_limits {
+      resource_type = "cpu"
+      minimum       = var.cluster_autoscaling_min_cpu
+      maximum       = var.cluster_autoscaling_max_cpu
+    }
+    resource_limits {
+      resource_type = "memory"
+      minimum       = var.cluster_autoscaling_min_memory
+      maximum       = var.cluster_autoscaling_max_memory
+    }
+    auto_provisioning_defaults {
+      oauth_scopes = var.cluster_autoscaling_gke_scopes
+    }
+  }
+  
   maintenance_policy {
     daily_maintenance_window {
       start_time = var.daily_maintenance
