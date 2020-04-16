@@ -42,8 +42,6 @@ module "cluster" {
 module "default_workers" {
   source = "./modules/gke-workers"
 
-  enabled = var.cluster_autoscaling ? false : true
-
   region                 = var.region
   group_name             = "default"
   zones                  = var.zones

@@ -53,8 +53,3 @@ variable "max_surge" {
 
 variable "max_unavailable" {
 }
-
-variable "enabled" {
-  type    = bool
-  default = true
-}
