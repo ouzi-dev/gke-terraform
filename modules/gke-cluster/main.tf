@@ -57,7 +57,7 @@ resource "google_container_cluster" "k8s-cluster" {
       oauth_scopes = var.cluster_autoscaling_gke_scopes
     }
   }
-  
+
   maintenance_policy {
     daily_maintenance_window {
       start_time = var.daily_maintenance

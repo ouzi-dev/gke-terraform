@@ -146,7 +146,7 @@ variable "cluster_autoscaling" {
 
 # OPTIMIZE_UTILIZATION or BALANCED
 variable "cluster_autoscaling_profile" {
-  type = string
+  type    = string
   default = "OPTIMIZE_UTILIZATION"
 }
 

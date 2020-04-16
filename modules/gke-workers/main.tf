@@ -1,5 +1,4 @@
 resource "google_container_node_pool" "k8s-worker-pool" {
-  count              = var.enabled ? 1 : 0
   provider           = google-beta
   name               = "${var.gke_cluster_name}-${var.group_name}"
   location           = var.region
