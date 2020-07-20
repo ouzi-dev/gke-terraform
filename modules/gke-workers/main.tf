@@ -1,6 +1,6 @@
 resource "google_container_node_pool" "k8s-worker-pool" {
   provider           = google-beta
-  name               = "${var.gke_cluster_name}-${var.group_name}"
+  name_prefix        = "${var.gke_cluster_name}-${var.group_name}"
   location           = var.region
   cluster            = var.gke_cluster_name
   initial_node_count = var.init_nodes
@@ -10,6 +10,7 @@ resource "google_container_node_pool" "k8s-worker-pool" {
       node_count,
       initial_node_count,
     ]
+    create_before_destroy = true
   }
 
   node_config {
